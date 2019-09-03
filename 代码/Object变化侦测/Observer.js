@@ -1,5 +1,6 @@
 const Dep = require('./Dep');
 const Watcher = require('./Watcher');
+const arrayMethods = require('../Array变化侦测/index');
 /*
   Observer类会附加到每一个被侦测的object上面。
   一旦被附加上，Observer会将objet的所有属性转换成getter/setter的形式
@@ -8,7 +9,9 @@ const Watcher = require('./Watcher');
 class Observer {
     constructor (value) {
         this.value = value;
-        if (!Array.isArray(value)) {
+        if (Array.isArray(value)) {
+            value.__proto__ = arrayMethods;
+        } else {
             this.walk(value);
         }
     }

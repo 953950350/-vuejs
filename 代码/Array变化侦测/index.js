@@ -22,3 +22,4 @@ const arrayMethods = Object.create(arrayProto)
         }
     })
 })
+module.exports = arrayMethods;
